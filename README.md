@@ -56,7 +56,7 @@
 | 组织内容 | 多级分类、标签、归档、草稿、置顶；[特色系列](./src/content/blog/tools/astro-koharu-guide.md#系列文章系统)有独立页面与首页高亮，自定义页面可直接放在 `src/pages/` |
 | 舒适阅读 | 深浅主题、移动端章节标题与目录、阅读进度和时长；Pagefind 搜索、LQIP 图片占位；`motion` 提供三档动效、樱花效果，并尊重系统减少动态效果设置 |
 | 多语言发布 | 内置中文、英文、日文、韩文 UI 字典；内容翻译、语言切换、hreflang、按语言订阅 RSS；见 [i18n 配置](./src/content/blog/tools/astro-koharu-guide.md#多语言支持i18n) |
-| 和读者互动 | Waline / Giscus / Remark42 / Twikoo 评论、[友链分组](./docs/features/friend-link-groups.md)、公告、Umami 统计；可配置 BGM、Bangumi 收藏与圣诞效果 |
+| 和读者互动 | Waline / Giscus / Remark42 / Twikoo 评论、[友链分组](./docs/features/friend-link-groups.md)、公告、Umami 统计；可配置 BGM、Bangumi 收藏、[VNDB 追 VN](./docs/features/vndb.md)与圣诞效果 |
 | 生成内容资产 | [Koharu CLI](./docs/guides/koharu-cli.md)管理新建、备份、还原、更新和迁移；可生成 LQIP、语义相似度推荐与 AI 摘要 |
 | 扩展博客 | 整篇或局部 AES-256-GCM 加密；可选[碎碎念](./docs/features/moments.md)接入 koharu-suite 公开频道，提供详情、搜索、分页与 RSS |
 

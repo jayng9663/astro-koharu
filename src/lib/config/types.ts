@@ -657,6 +657,21 @@ export interface BangumiConfig {
 }
 
 // =============================================================================
+// VNDB (Visual Novel Tracking) Configuration
+// =============================================================================
+
+export interface VndbConfig {
+  /** VNDB user id (e.g. `u12345`) or username */
+  userId: string;
+  /** Navigation display name, defaults to i18n key 'nav.vndb' */
+  label?: string;
+  /** Navigation icon (Iconify format), defaults to 'ri:gamepad-fill' */
+  icon?: string;
+  /** Hide covers whose average sexual or violence flag (scale 0-2) exceeds this. Defaults to 1.8 */
+  hideCoverAbove?: number;
+}
+
+// =============================================================================
 // i18n Configuration
 // =============================================================================
 
@@ -715,6 +730,8 @@ export interface SiteYamlConfig {
   bgm?: BgmConfig;
   /** Bangumi media tracking page — comment out to disable */
   bangumi?: BangumiConfig;
+  /** VNDB visual novel tracking page — comment out to disable */
+  vndb?: VndbConfig;
   christmas?: ChristmasConfig;
   /** Development tools configuration (dev only) */
   dev?: DevConfig;

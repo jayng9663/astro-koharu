@@ -18,6 +18,7 @@ import { normalizeMotionConfig } from './motion';
 import { normalizePostActionsConfig } from './post-actions';
 import { RESERVED_ROUTES } from './reserved-routes';
 import type { I18nConfig, ResolvedContentConfig, ResolvedMotionConfig, ResolvedSiteConfig } from './types';
+import { normalizeVndbConfig } from './vndb';
 
 /** Category name → URL slug map, e.g. `{ '随笔': 'life' }`. */
 export const categoryMap: Record<string, string> = yamlConfig.categoryMap ?? {};
@@ -54,6 +55,9 @@ export const editorConfig = normalizeEditorConfig(yamlConfig.editor);
 export const colophonConfig = normalizeColophonConfig(yamlConfig.colophon);
 
 export const postActionsConfig = normalizePostActionsConfig(yamlConfig.postActions);
+
+/** VNDB visual novel tracking page — null when the `vndb:` section is absent. */
+export const vndbConfig = normalizeVndbConfig(yamlConfig.vndb);
 
 /**
  * Site timezone in IANA format.

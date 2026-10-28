@@ -1,0 +1,32 @@
+---
+import HomeSider from '@components/layout/HomeSider.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { VndbCollection } from '@components/vndb';
+import { siteConfig, vndbConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
+import { Comment } from '@/components/comment';
+import { defaultLocale, t } from '@/i18n';
+
+interface Props {
+  locale?: string;
+}
+
+if (!vndbConfig) return Astro.redirect('/404');
+
+// Root pages render the default locale; `[lang]/` mirrors pass their locale in explicitly.
+const { locale = defaultLocale } = Astro.props;
+const title = `${t(locale, 'vndb.title')} | ${siteConfig.title}`;
+const description = t(locale, 'vndb.description');
+---
+
+<Layout locale={locale} title={title} description={description}>
+  <TwoColumnLayout>
+    <Cover compact slot="cover" title={t(locale, 'vndb.title')} />
+    <HomeSider slot="sider" />
+    <div class="index-surface shadow-box flex flex-col gap-8">
+      <VndbCollection client:load userId={vndbConfig.userId} hideCoverAbove={vndbConfig.hideCoverAbove} />
+      <Comment />
+    </div>
+  </TwoColumnLayout>
+</Layout>

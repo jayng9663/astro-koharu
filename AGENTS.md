@@ -150,6 +150,8 @@ pages/ → components/ → hooks/ → lib/ → constants/
 
 **Bangumi Page**: Optional media tracking page integrating [Bangumi API](https://api.bgm.tv). Configured via `bangumi` section in `config/site.yaml` — comment out to disable (page + navigation auto-hidden). Data fetched client-side in React (`BangumiCollection` component with `client:load`). Types in `src/types/bangumi.ts`, API client in `src/lib/bangumi/`, data hook in `src/hooks/useBangumiData.ts`. Navigation item auto-injected via `routers` in `src/constants/site-config.ts`.
 
+**VN Tracker Page (VNDB)**: Optional visual novel list page at `/vn` backed by the [VNDB Kana API](https://api.vndb.org/kana). Configured via `vndb` section in `config/site.yaml` (normalized in `src/lib/config/vndb.ts`) — comment out to disable (page + navigation auto-hidden). Data is fetched client-side: API client, sorting, cover-hiding rule and description parsing are pure modules in `src/lib/vndb/` (`pnpm test:vndb`), state lives in `src/hooks/useVndb*.ts`, UI in `src/components/vndb/`. Covers whose `sexual`/`violence` flag average exceeds `hideCoverAbove` are not rendered or requested until the visitor reveals them. See `docs/features/vndb.md`.
+
 **Theme System**: Dark/light toggle with localStorage, inline check in `<head>` prevents FOUC.
 
 **i18n System**: Two-layer translation architecture with locale-aware routing.

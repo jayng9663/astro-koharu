@@ -56,7 +56,7 @@
 | 内容を整理する | 階層カテゴリ、タグ、アーカイブ、下書き、固定記事。[シリーズ](../src/content/blog/tools/astro-koharu-guide.md#系列文章系统)には専用ページとホームのハイライトがあり、独立ページは `src/pages/` に追加 |
 | 快適に読む | ライト・ダークテーマ、モバイルの章タイトルと目次、読書進捗と所要時間。Pagefind 検索、LQIP 画像プレースホルダー。`motion` は 3 段階の動きと桜の演出を設定でき、OS の動きを減らす設定に対応 |
 | 多言語で公開する | 中国語・英語・日本語・韓国語の UI 辞書、記事翻訳、言語切り替え、hreflang、言語別 RSS。[i18n 設定](../src/content/blog/tools/astro-koharu-guide.md#多语言支持i18n)を参照 |
-| 読者と交流する | Waline / Giscus / Remark42 / Twikoo コメント、[リンク集のグループ](./features/friend-link-groups.md)、お知らせ、Umami。BGM、Bangumi コレクション、クリスマス演出も設定可能 |
+| 読者と交流する | Waline / Giscus / Remark42 / Twikoo コメント、[リンク集のグループ](./features/friend-link-groups.md)、お知らせ、Umami。BGM、Bangumi コレクション、VNDB のビジュアルノベル一覧（[ガイド](./features/vndb.en.md)・英語）、クリスマス演出も設定可能 |
 | コンテンツ用データを生成する | [Koharu CLI](./guides/koharu-cli.md)で新規作成・バックアップ・復元・更新・移行。LQIP、意味的類似度による関連記事、AI 要約も任意で生成 |
 | ブログを拡張する | 記事全体・ブロック単位の AES-256-GCM 暗号化。任意の[ひとこと（Moments）](./features/moments.ja.md)で koharu-suite の公開チャンネルを取り込み、詳細・検索・ページ送り・RSS を提供 |
 

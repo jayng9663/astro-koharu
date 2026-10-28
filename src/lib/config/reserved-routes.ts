@@ -15,6 +15,7 @@ export const RESERVED_ROUTES = new Set([
   'posts',
   'archives',
   'bangumi',
+  'vn',
   'music',
   'editor',
   '404',

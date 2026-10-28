@@ -17,6 +17,7 @@ import {
   i18nConfig,
   motionConfig,
   siteConfig,
+  vndbConfig,
 } from '@lib/config/site';
 import type {
   AnalyticsConfig,
@@ -33,7 +34,7 @@ import type { UmamiStatsConfig } from '@/types/umami-stats';
 import yamlConfig from '../../config/site.yaml';
 import { DEFAULT_ROUTERS, RESERVED_ROUTES } from './router';
 
-export { contentConfig, editorConfig, i18nConfig, motionConfig, siteConfig };
+export { contentConfig, editorConfig, i18nConfig, motionConfig, siteConfig, vndbConfig };
 
 export const socialConfig: SocialConfig = yamlConfig.social ?? {};
 
@@ -121,18 +122,32 @@ const momentsRouters = resolveMomentsNavigation(
   momentsConfig,
 );
 
-// Navigation routers with resolved feature placeholders and auto-injected bangumi entry
-export const routers: RouterItem[] = bangumiConfig
-  ? [
-      ...momentsRouters,
-      {
-        name: bangumiConfig.label,
-        nameKey: bangumiConfig.label ? undefined : 'nav.bangumi',
-        path: '/bangumi',
-        icon: bangumiConfig.icon ?? 'ri:bilibili-fill',
-      },
-    ]
-  : momentsRouters;
+// Tracking pages (Bangumi, VNDB) are injected at the end of the navigation when configured.
+const trackingRouters: RouterItem[] = [
+  ...(bangumiConfig
+    ? [
+        {
+          name: bangumiConfig.label,
+          nameKey: bangumiConfig.label ? undefined : 'nav.bangumi',
+          path: '/bangumi',
+          icon: bangumiConfig.icon ?? 'ri:bilibili-fill',
+        },
+      ]
+    : []),
+  ...(vndbConfig
+    ? [
+        {
+          name: vndbConfig.label,
+          nameKey: vndbConfig.label ? undefined : 'nav.vndb',
+          path: '/vn',
+          icon: vndbConfig.icon,
+        },
+      ]
+    : []),
+];
+
+// Navigation routers with resolved feature placeholders and auto-injected tracking entries
+export const routers: RouterItem[] = [...momentsRouters, ...trackingRouters];
 
 // Map YAML dev tools config with defaults (dev only)
 export const devConfig: DevConfig = {

@@ -56,7 +56,7 @@ Recorded on this repository’s demo site (Chinese UI).
 | Organize content | Nested categories, tags, archives, drafts, pinned posts; [featured series](../src/content/blog/tools/astro-koharu-guide.md#系列文章系统) with dedicated pages and homepage highlights; custom pages under `src/pages/` |
 | Read comfortably | Light/dark themes, mobile section header and TOC, reading progress and time; Pagefind search, LQIP image placeholders; three `motion` levels and sakura effects that respect reduced-motion preferences |
 | Publish in multiple languages | Chinese, English, Japanese, and Korean UI dictionaries; content translations, language switcher, hreflang, and locale-specific RSS; see [i18n setup](../src/content/blog/tools/astro-koharu-guide.md#多语言支持i18n) |
-| Connect with readers | Waline / Giscus / Remark42 / Twikoo comments, [friend-link groups](./features/friend-link-groups.md), announcements, and Umami; optional BGM, Bangumi collections, and Christmas effects |
+| Connect with readers | Waline / Giscus / Remark42 / Twikoo comments, [friend-link groups](./features/friend-link-groups.md), announcements, and Umami; optional BGM, Bangumi collections, a [VNDB visual novel tracker](./features/vndb.en.md), and Christmas effects |
 | Generate content assets | [Koharu CLI](./guides/koharu-cli.md) for creation, backup, restore, updates, and migration; optional LQIP, semantic recommendations, and AI summaries |
 | Extend your blog | AES-256-GCM encryption for posts or blocks; optional [Moments](./features/moments.en.md) from public koharu-suite channels, with detail pages, search, pagination, and RSS |
 

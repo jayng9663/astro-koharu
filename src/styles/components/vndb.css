@@ -1,0 +1,320 @@
+/* VNDB reuses the Bangumi poster shelf; only what differs lives here. */
+/* Visual novel covers are closer to 3:4 than to anime posters' 2:3. */
+.bangumi-poster.vndb-poster {
+  aspect-ratio: 3 / 4;
+}
+/* Stands in for a cover that is not displayed. */
+.vndb-cover-hidden {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  background: repeating-linear-gradient(135deg, hsl(var(--foreground) / 0.04) 0 10px, transparent 10px 20px), hsl(var(--muted));
+}
+/* The card is a div (it holds buttons), so the link affordances the Bangumi card gets from its anchor are rebuilt here. */
+.vndb-poster-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.vndb-cover-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.25rem;
+}
+.vndb-title-link {
+  color: inherit;
+}
+.vndb-card:has(:focus-visible) .bangumi-poster {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 3px;
+}
+.vndb-card:has(.vndb-title-link:hover, .vndb-title-link:focus-visible) .bangumi-title {
+  color: var(--index-ink);
+}
+.vndb-cover-toggle {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.08);
+  color: hsl(var(--foreground));
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background-color 160ms var(--ease-out-quart);
+}
+.vndb-cover-toggle:hover {
+  background: hsl(var(--foreground) / 0.16);
+}
+/* Hides a cover that was revealed; kept small and corner-bound so it never competes with the artwork. */
+.vndb-cover-rehide {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: hsl(0 0% 0% / 0.55);
+  color: #fff;
+  opacity: 0.85;
+}
+.vndb-cover-rehide:hover {
+  opacity: 1;
+}
+
+/* Detail window: a fixed header, a scrolling body, the cover beside the facts. */
+.vndb-detail-head {
+  padding: 1.25rem 3.5rem 0.75rem 1.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.vndb-detail-original {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-detail-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.vndb-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+.vndb-detail-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: min(14rem, 100%);
+  margin-inline: auto;
+}
+.vndb-detail-cover {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: hsl(var(--muted));
+  box-shadow:
+    inset 0 0 0 1px hsl(var(--foreground) / 0.06),
+    0 12px 24px -14px hsl(var(--foreground) / 0.5);
+}
+.vndb-detail-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.vndb-detail-cover.is-placeholder {
+  aspect-ratio: 3 / 4;
+}
+.vndb-open-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.08);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: background-color 160ms var(--ease-out-quart);
+}
+.vndb-open-link:hover {
+  background: hsl(var(--foreground) / 0.16);
+}
+.vndb-detail-main {
+  min-width: 0;
+}
+.vndb-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.vndb-info dt {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-info dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.vndb-info a,
+.vndb-description a {
+  color: var(--index-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.vndb-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.vndb-titles li {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 0 0.5rem;
+}
+.vndb-title-lang {
+  padding-top: 0.15rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-title-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-title-latin,
+.vndb-dev-note {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+.vndb-chip {
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.07);
+  font-size: 0.75rem;
+}
+.vndb-info a.vndb-chip-link {
+  text-decoration: none;
+}
+.vndb-info a.vndb-chip-link:hover {
+  background: hsl(var(--foreground) / 0.16);
+}
+.vndb-description {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+.vndb-description h3 {
+  margin-bottom: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-description p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 640px) {
+  .vndb-detail {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+  .vndb-detail-side {
+    margin-inline: 0;
+  }
+  .vndb-info {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  .vndb-info dt {
+    margin-top: 0;
+    padding-top: 0.15rem;
+  }
+}
+
+/* The full-size cover opens the lightbox, as an article image does. */
+.vndb-zoom-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+}
+.vndb-zoom-button:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: -2px;
+}
+.vndb-zoom-badge {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: hsl(0 0% 0% / 0.55);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 160ms var(--ease-out-quart);
+}
+.vndb-zoom-button:is(:hover, :focus-visible) .vndb-zoom-badge {
+  opacity: 0.9;
+}
+/* Touch screens have no hover, so the hint stays visible there. */
+@media (hover: none) {
+  .vndb-zoom-badge {
+    opacity: 0.8;
+  }
+}
+
+/* Totals on the left, sorting on the right; they wrap onto separate lines on narrow screens. */
+.vndb-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+}
+.vndb-stats {
+  margin-right: auto;
+}
+.vndb-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.vndb-sort-select {
+  padding: 0.25rem 1.75rem 0.25rem 0.625rem;
+  border-radius: 999px;
+  background-color: hsl(var(--foreground) / 0.07);
+  color: hsl(var(--foreground));
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+/* The popup list is drawn by the browser from the select's own colours, which are translucent here; give the options solid theme colours so it reads in both themes. */
+.vndb-sort-select {
+  color-scheme: light;
+}
+.dark .vndb-sort-select {
+  color-scheme: dark;
+}
+.vndb-sort-select option {
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+}
+.vndb-sort-select:hover,
+.vndb-sort-direction:hover {
+  background-color: hsl(var(--foreground) / 0.14);
+}
+.vndb-sort-direction {
+  display: flex;
+  padding: 0.375rem;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.07);
+  color: hsl(var(--foreground));
+}
+.vndb-sort-select:focus-visible,
+.vndb-sort-direction:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}

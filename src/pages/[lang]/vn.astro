@@ -1,0 +1,16 @@
+---
+import { vndbConfig } from '@constants/site-config';
+import { getLocaleStaticPaths } from '../_shared/utils';
+import VndbPage from '../vn.astro';
+
+// Without vndb configured the root page redirects at its top level, which throws
+// when rendered as a child component (astro#5551) — emit no paths instead.
+export const getStaticPaths = vndbConfig ? getLocaleStaticPaths : async () => [];
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+---
+<VndbPage locale={locale} />
